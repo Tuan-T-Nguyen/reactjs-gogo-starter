@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TransitionGroup } from 'react-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import classnames from 'classnames';
 import Notification from './Notification';
 
@@ -33,9 +33,10 @@ class Notifications extends React.Component {
     });
     return (
       <div className={className}>
-        <TransitionGroup
-          classnames="notification"
-          timeout={{ leaveTimeout, enterTimeout }}
+        <CSSTransitionGroup
+          transitionName="notification"
+          transitionEnterTimeout={enterTimeout}
+          transitionLeaveTimeout={leaveTimeout}
         >
           {notifications.map(notification => {
             const key = notification.id || new Date().getTime();
@@ -52,7 +53,7 @@ class Notifications extends React.Component {
               />
             );
           })}
-        </TransitionGroup>
+        </CSSTransitionGroup>
       </div>
     );
   }
